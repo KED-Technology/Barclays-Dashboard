@@ -47,7 +47,7 @@
               <!-- <div id="preloader" class="preloader">
                 <div class="loader"></div>
             </div> -->
-        
+             <div class="border" style="height: 200px;"></div>
               <!-- Modal -->
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -553,7 +553,32 @@
             }, 100000); // Adjust the timeout to match the CSS animation duration
         });
       </script> -->
+      <!-- <script>
+        function enableButtons(selected) {
+          // Get all secondary buttons
+          const dailyButton = document.getElementById('sav_daily_btn');
+          const monthlyButton = document.getElementById('sav_monthly_btn');
+          const yearlyButton = document.getElementById('sav_yearly_btn');
       
+          // Disable all buttons first
+          dailyButton.disabled = true;
+          monthlyButton.disabled = true;
+          yearlyButton.disabled = true;
+      
+          // Enable buttons based on the selected button
+          if (selected === 'daily') {
+            dailyButton.disabled = false;
+            dail
+          } else if (selected === 'weekly') {
+            dailyButton.disabled = false;
+            monthlyButton.disabled = false;
+          } else if (selected === 'mtd') {
+            monthlyButton.disabled = false;
+          } else if (selected === 'ytd') {
+            yearlyButton.disabled = false;
+          }
+        }
+      </script> -->
     
 </body>
 </html>

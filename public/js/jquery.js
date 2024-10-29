@@ -797,18 +797,8 @@ async function pieChart1() {
 
 }
 // Declare the chart variable globally
-
-
-
-
 // Declare global variables for the chart and timeout
-
-
-
 pieChart1();
-
-
-
 async function lineChartMonthlyWater() {
     // Get the current date
     const today = new Date();
@@ -1281,7 +1271,6 @@ async function showClusteredBarChart1() {
         chart.logo.disabled = true;
     }); // end am4core.ready()
 }
-
 
 $("#startDateWater, #endDateWater").on("change", async function () {
     clearDateInputs();
