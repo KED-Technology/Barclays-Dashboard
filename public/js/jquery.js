@@ -4376,3 +4376,29 @@ async function clearDateInputsEpi() {
     $("#endDateEPI").val('');
 }
 
+$('.daily').on("click", async function () {
+    console.log("daily clicked");
+    $(".Hourly").show();
+    $(".Daily").show();
+    $(".Weekly").hide();
+    $(".3Mo").hide();
+    $(".6Mo").hide();
+    $(".Monthly").hide();
+    $(".3Y").hide();
+    $(".5Y").hide();
+    $(".Yearly").hide();
+});
+
+  // Initialize Date Range Picker with month and year dropdowns
+  $('#customRangeOption').daterangepicker({
+    opens: 'right',
+    autoUpdateInput: false,
+    showDropdowns: true, // Enables month and year dropdowns
+    locale: {
+        format: 'YYYY-MM-DD', // Display format
+        cancelLabel: 'Clear'
+    }
+}, function (start, end) {
+    // Display selected range in the button text if valid
+    $('#selectedOptionDisplay').text(`${start.format('YYYY-MM-DD')} - ${end.format('YYYY-MM-DD')}`);
+});

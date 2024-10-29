@@ -25,6 +25,7 @@
     <link href="public/css/sb-admin-2.min.css" rel="stylesheet" />
     <link href="public/css/custome-white.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="public/vendor/chartist/css/chartist.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet">
 </head>
 <body id="page-top" class="page-overview sidebar-toggled">
     <div id="wrapper">
@@ -47,7 +48,16 @@
               <!-- <div id="preloader" class="preloader">
                 <div class="loader"></div>
             </div> -->
-             <div class="border" style="height: 200px;"></div>
+             <div class="border" style="height: 50px;">
+              <div class="d-flex align-items-center justify-content-center">
+                <button class="btn daily">1d</button>
+                <button class="btn weekly">W</button>
+                <button class="btn monthly">MTD</button>
+                <button class="btn yearly">YTD</button>
+                <button class="btn" id="customRangeOption">Custom Range</button>
+              </div>
+              <button class="btn mt-2" id="selectedOptionDisplay">Select a Date Range</button>
+             </div>
               <!-- Modal -->
               <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -182,15 +192,29 @@
                   <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 class="m-0 font-weight-bold text-primary">CO2 Emission in Ton / User</h6> 
-                      <!-- <div class="dropdown">
-                        <button class="btn chart-btn border-0 text-primary" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          &#x22EE; 
+                      <!-- Dropdown for the toggle button -->
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- Vertical three-dot icon for the toggle button -->
+                            <div class="three-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><button class="dropdown-item" href="#"> Daily</button></li>
-                          <li><button class="dropdown-item" href="#">Hourly</button></li>
-                        </ul>
-                      </div>  -->
+                        <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                            <!-- Options with white background -->
+                            <a class="dropdown-item Hourly" href="#" data-value="daily">Hourly</a>
+                            <a class="dropdown-item Daily" href="#" data-value="daily">Daily</a>
+                            <a class="dropdown-item Weekly" href="#" data-value="daily">Weekly</a>
+                            <a class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</a>
+                            <a class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</a>
+                            <a class="dropdown-item Monthly" href="#" data-value="daily">Monthly</a>
+                            <a class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</a>
+                            <a class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</a>
+                            <a class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</a>
+                        </div>
+                    </div>
                     </div>
                       <div class="card-body">
                         <div class="chart-area">
@@ -536,6 +560,8 @@
       <script  src="public/vendor/jquery/jquery.min.js"></script>
       <script src="public/vendor/jquery/jquery-ui.min.js"></script>
       <script src="public/vendor/popper/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
       <!-- CO2 Emission Donut Chart -->
       <script src="public/js/jquery.js"></script>
       <!-- <script>
