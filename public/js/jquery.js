@@ -235,7 +235,7 @@ jQuery(function () {
             "legend": {
                 "useGraphSettings": true,
                 "color": "#000",
-                "position": "top",
+                "position": "bottom",
                 "align": "center",
                 "marginBottom": 10,
                 "valueText": ""
@@ -386,7 +386,7 @@ jQuery(function () {
                 "legend": {
                     "useGraphSettings": true,
                     "color": "#000",
-                    "position": "top",
+                    "position": "bottom",
                     "align": "center",
                     "marginBottom": 10,
                     "valueText": ""
@@ -499,7 +499,7 @@ jQuery(function () {
         emissionChart.colors.step = 2;
 
         emissionChart.legend = new am4charts.Legend();
-        emissionChart.legend.position = 'top';
+        emissionChart.legend.position = 'bottom';
         emissionChart.legend.paddingBottom = 20;
         emissionChart.legend.labels.template.maxWidth = 95;
         emissionChart.legend.labels.template.fill = am4core.color('#000000');
@@ -672,7 +672,7 @@ jQuery(function () {
                 }
             },
             legend: {
-                position: 'top',
+                position: 'bottom',
                 horizontalAlign: 'center',
                 labels: {
                     colors: ['#000000'],
@@ -775,7 +775,7 @@ async function pieChart1() {
 
         // Add legend at the top
         chart.legend = new am4charts.Legend();
-        chart.legend.position = "top";
+        chart.legend.position = "bottom";
         chart.legend.labels.template.maxWidth = 100;
         chart.legend.labels.template.text = "{country}: {litres} L"; // Updated to show litres value
         chart.legend.labels.template.interactionsEnabled = false;
@@ -863,7 +863,7 @@ async function lineChartMonthlyWater() {
         "legend": {
             "useGraphSettings": true,
             "color": "#000",
-            "position": "top",
+            "position": "bottom",
             "align": "center",
             "marginBottom": 10,
             "valueText": ""
@@ -983,7 +983,7 @@ async function lineChart1() {
             "legend": {
                 "useGraphSettings": true,
                 "color": "#000",
-                "position": "top",       // Legend at top
+                "position": "bottom",       // Legend at top
                 "align": "center",       // Center the legend
                 "marginBottom": 0,       // Space below legend
                 "valueText": ""
@@ -1182,7 +1182,7 @@ async function showClusteredBarChart1() {
         chart.colors.step = 2;
 
         chart.legend = new am4charts.Legend();
-        chart.legend.position = 'top';
+        chart.legend.position = 'bottom';
         chart.legend.paddingBottom = 20;
         chart.legend.labels.template.maxWidth = 95;
         chart.legend.labels.template.fill = am4core.color('#000000');
@@ -1510,7 +1510,7 @@ async function lineChart4() {
         // Create chart instance
         powerChart = am4core.create("chartdiv2", am4charts.XYChart);
         powerChart.legend = new am4charts.Legend();
-        powerChart.legend.position = 'top';
+        powerChart.legend.position = 'bottom';
         powerChart.legend.paddingBottom = 15;
         powerChart.legend.paddingTop = 0;
         powerChart.legend.labels.template.maxWidth = 95;
@@ -1660,7 +1660,7 @@ async function barChart() {
             "legend": {
                 "useGraphSettings": true,
                 "color": "#000",
-                "position": "top",
+                "position": "bottom",
                 "align": "center",
                 "marginBottom": 10,
                 "valueText": ""
@@ -1777,7 +1777,7 @@ async function lineChartMonthlyPower() {
         "legend": {
             "useGraphSettings": true,
             "color": "#000",
-            "position": "top",
+            "position": "bottom",
             "align": "center",
             "marginBottom": 10,
             "valueText": ""
@@ -2142,7 +2142,7 @@ async function occupacyBarChart1() {
         },
         legend: {
             show: true,
-            position: 'top', // Place the legend on top
+            position: 'bottom', // Place the legend on top
             horizontalAlign: 'center', // Center align the legend
             offsetY: 20
         },
@@ -2235,7 +2235,7 @@ async function occupacyLine() {
             "legend": {
                 "useGraphSettings": true,
                 "color": "#000",
-                "position": "top",
+                "position": "bottom",
                 "align": "center",
                 "marginBottom": 10,
                 "valueText": ""
@@ -2453,7 +2453,7 @@ async function occupacyBar() {
             },
         },
         legend: {
-            position: 'top', // Position of the legend
+            position: 'bottom', // Position of the legend
             horizontalAlign: 'center', // Center align the legend
             labels: {
                 colors: ['#000000'], // Legend label color
@@ -2516,7 +2516,7 @@ async function lineChartMonthlyOccupancy() {
         "legend": {
             "useGraphSettings": true,
             "color": "#000",
-            "position": "top",
+            "position": "bottom",
             "align": "center",
             "marginBottom": 10,
             "valueText": ""
@@ -2671,7 +2671,7 @@ async function createPieChart() {
             show: true,
             floating: true,
             fontSize: '16px',
-            position: 'top',
+            position: 'bottom',
             horizontalAlign: 'center',
             offsetY: 1,
             labels: { useSeriesColors: true },
@@ -2865,7 +2865,7 @@ async function aqiDonut1() {
             show: true,
             floating: true,
             fontSize: '16px',
-            position: 'top',
+            position: 'bottom',
             horizontalAlign: 'center',
             offsetY: 40,
             labels: { useSeriesColors: true },
@@ -2926,7 +2926,7 @@ async function aqiDonut1() {
             show: true,
             floating: true,
             fontSize: '16px',
-            position: 'top',
+            position: 'bottom',
             horizontalAlign: 'center',
             offsetY: 40,
             labels: { useSeriesColors: true },
@@ -3067,7 +3067,7 @@ async function createBarChart() {
             "legend": {
                 "useGraphSettings": true,
                 "color": "#000",
-                "position": "top",
+                "position": "bottom",
                 "align": "center",
                 "marginBottom": 10,
                 "valueText": ""
@@ -3304,7 +3304,7 @@ async function lineChartMonthlyAqi() {
         "legend": {
             "useGraphSettings": true,
             "color": "#000",
-            "position": "top",
+            "position": "bottom",
             "align": "center",
             "marginBottom": 10,
             "valueText": ""
@@ -3443,7 +3443,7 @@ async function epiDonutChart() {
         colors: ['#FFB200', '#667BC6', '#D1E9F6'],
         legend: {
             show: true,
-            position: 'top', // Position the legend at the top
+            position: 'bottom', // Position the legend at the top
             horizontalAlign: 'center', // Center the legend
             labels: {
                 colors: Array(5).fill('#000000'), // Set all legend label colors to black
@@ -3496,7 +3496,7 @@ async function epiDonutChart() {
                     width: 200
                 },
                 legend: {
-                    position: 'top'
+                    position: 'bottom'
                 }
             }
         }],
@@ -3557,7 +3557,7 @@ async function epiLine() {
                 "legend": {
                     "useGraphSettings": true,
                     "color": "#000",
-                    "position": "top",       // Legend at top
+                    "position": "bottom",       // Legend at top
                     "align": "center",       // Center the legend
                     "marginBottom": 10,      // Space below legend
                     "valueText": ""
@@ -3881,7 +3881,7 @@ async function epiBarChart() {
                 }
             },
             legend: {
-                position: 'top',
+                position: 'bottom',
                 horizontalAlign: 'center',
                 labels: {
                     colors: ['#000000'],
@@ -3953,7 +3953,7 @@ async function lineChartMonthlyEpi() {
         "legend": {
             "useGraphSettings": true,
             "color": "#000",
-            "position": "top",
+            "position": "bottom",
             "align": "center",
             "marginBottom": 10,
             "valueText": ""
@@ -4214,7 +4214,7 @@ async function epiColumnChart() {
             }
         },
         legend: {
-            position: 'top', // Place the legend on top
+            position: 'bottom', // Place the legend on top
             horizontalAlign: 'center', // Center align the legend
             offsetY: 20
         },

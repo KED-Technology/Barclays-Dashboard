@@ -204,23 +204,23 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
                             <!-- Options with white background -->
-                            <a class="dropdown-item Hourly" href="#" data-value="daily">Hourly</a>
-                            <a class="dropdown-item Daily" href="#" data-value="daily">Daily</a>
-                            <a class="dropdown-item Weekly" href="#" data-value="daily">Weekly</a>
-                            <a class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</a>
-                            <a class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</a>
-                            <a class="dropdown-item Monthly" href="#" data-value="daily">Monthly</a>
-                            <a class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</a>
-                            <a class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</a>
-                            <a class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</a>
+                            <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                            <button class="dropdown-item Daily" href="#" data-value="daily">Daily</button>
+                            <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                            <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                            <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                            <button class="dropdown-item Monthly" href="#" data-value="daily">Monthly</button>
+                            <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                            <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                            <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
                         </div>
-                    </div>
+                      </div>
                     </div>
                       <div class="card-body">
                         <div class="chart-area">
                           <div id="chartdiv"></div>
                         </div>
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                           <div class="d-flex">
                             <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                               <label for="startDate" class="me-2">Start Date:</label>
@@ -236,7 +236,7 @@
                             <button id="sav_monthly_btn" class="chart-button mx-1">Monthly</button>
                             <button id="sav_yearly_btn" class="chart-button mx-1">Yearly</button>
                           </div>
-                        </div>
+                        </div> -->
                     </div>
                   </div>
                 </div>
@@ -246,12 +246,34 @@
                   <div class="card shadow mb-4">
                       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                           <h6 class="m-0 font-weight-bold text-primary">Water Consumption Per User</h6>
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- Vertical three-dot icon for the toggle button -->
+                                <div class="three-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                                <!-- Options with white background -->
+                                <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                                <button class="dropdown-item Daily" href="#" data-value="daily">Daily</button>
+                                <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                                <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                                <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                                <button class="dropdown-item Monthly" href="#" data-value="daily">Monthly</button>
+                                <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                                <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                                <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
+                            </div>
+                          </div>
                       </div>
                       <div class="card-body">
                           <div class="chart-area">
                               <div id="chartdiv1"></div>
                           </div>
-                          <div class="mb-3">
+                          <!-- <div class="mb-3">
                               <div class="d-flex">
                                   <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                                       <label for="startDateWater" class="me-2">Start Date:</label>
@@ -267,7 +289,7 @@
                                   <button id="sav_monthly_water" class="chart-button mx-1">Monthly</button>
                                   <button id="sav_yearly_water" class="chart-button mx-1">Yearly</button>
                               </div>
-                          </div>
+                          </div> -->
                       </div>
                   </div>
                 </div>
@@ -313,12 +335,34 @@
                   <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                       <h6 class="m-0 font-weight-bold text-primary">Power Consumption</h6>
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- Vertical three-dot icon for the toggle button -->
+                            <div class="three-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                            <!-- Options with white background -->
+                            <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                            <button class="dropdown-item Daily" href="#" data-value="daily">Daily</button>
+                            <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                            <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                            <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                            <button class="dropdown-item Monthly" href="#" data-value="daily">Monthly</button>
+                            <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                            <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                            <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
+                        </div>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="chart-area">
                         <div id="chartdiv2" class="d-inline-block ct-perfect-fourth"></div>
                       </div>
-                      <div class="mb-3">
+                      <!-- <div class="mb-3">
                         <div class="d-flex">
                           <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                             <label for="startDatePower" class="me-2">Start Date:</label>
@@ -334,7 +378,7 @@
                           <button id="sav_monthly_power" class="chart-button mx-1">Monthly</button>
                           <button id="sav_yearly_power" class="power chart-button mx-1">Yearly</button>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
@@ -362,6 +406,28 @@
                           <i class="fas fa-fw fa-tachometer-alt"></i>
                         </button>
                       </div>
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- Vertical three-dot icon for the toggle button -->
+                            <div class="three-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                            <!-- Options with white background -->
+                            <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                            <button class="dropdown-item Daily" href="#" data-value="daily">Daily</button>
+                            <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                            <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                            <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                            <button class="dropdown-item Monthly" href="#" data-value="daily">Monthly</button>
+                            <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                            <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                            <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
+                        </div>
+                      </div>
                     </div>
                     <div class="card-body ">
                       <div class="chart-area sav_g_chart">
@@ -370,7 +436,7 @@
                       <div class="chart-area sav_b_chart">
                         <div class="occupancyChart" id="chartdiv9"></div>
                       </div>
-                      <div class="mb-3 occupacyBtn">
+                      <!-- <div class="mb-3 occupacyBtn">
                         <div class="d-flex">
                           <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                             <label for="startDateOccupancy" class="me-2">Start Date:</label>
@@ -386,7 +452,7 @@
                           <button id="sav_monthly_occupancy" class="chart-button mx-1" >Monthly</button>
                           <button id="sav_yearly_occupancy" class="occupancy chart-button mx-1">Yearly</button>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <!-- <div class="card-body sav_b_chart">
                       <div class="chart-area">
@@ -436,6 +502,28 @@
                                   <i class="fas fa-fw fa-tachometer-alt"></i>
                               </button>
                           </div>
+                          <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- Vertical three-dot icon for the toggle button -->
+                                <div class="three-dots">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                                <!-- Options with white background -->
+                                <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                                <button class="dropdown-item Daily" href="#" data-value="daily">Daily</button>
+                                <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                                <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                                <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                                <button class="dropdown-item Monthly" href="#" data-value="daily">Monthly</button>
+                                <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                                <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                                <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
+                            </div>
+                          </div>
                       </div>
                       <div class="card-body">
                           <div class="chart-area aqiAvg mt-0">
@@ -447,7 +535,7 @@
                                 <div class="aqiChart" id="bounceRateChart"></div>
                               </div>
                           </div>
-                          <div class="mb-3 aqiBtn">
+                          <!-- <div class="mb-3 aqiBtn">
                               <div class="d-flex">
                                   <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                                       <label for="startDateIAQ" class="me-2">Start Date:</label>
@@ -463,7 +551,7 @@
                                   <button id="sav_monthly_iaq" class="chart-button mx-1">Monthly</button>
                                   <button id="sav_yearly_iaq" class="chart-button mx-1">Yearly</button>
                               </div>
-                          </div>
+                          </div> -->
                       </div>
                   </div>
               </div>
@@ -492,6 +580,28 @@
                             <i class="fas fa-fw fa-tachometer-alt"></i>
                         </button>
                       </div>
+                      <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- Vertical three-dot icon for the toggle button -->
+                            <div class="three-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right bg-white" aria-labelledby="dropdownMenuButton">
+                            <!-- Options with white background -->
+                            <button class="dropdown-item Hourly" href="#" data-value="daily">Hourly</button>
+                            <button class="dropdown-item Daily" id="sav_daily_epi" href="#" data-value="daily">Daily</button>
+                            <button class="dropdown-item Weekly" href="#" data-value="daily">Weekly</button>
+                            <button class="dropdown-item 3Mo" href="#" data-value="daily">Last 3 months</button>
+                            <button class="dropdown-item 6Mo" href="#" data-value="daily">Last 6 Months</button>
+                            <button class="dropdown-item Monthly" id="sav_monthly_epi" href="#" data-value="daily">Monthly</button>
+                            <button class="dropdown-item 3Y" href="#" data-value="daily">Last 3 years</button>
+                            <button class="dropdown-item 5Y" href="#" data-value="weekly">Last 5 years</button>
+                            <button class="dropdown-item Yearly" href="#" data-value="yearly">Yearly</button>
+                        </div>
+                      </div>
                     </div>
                     <div class="card-body">
                       <div class="chart-area epiDonut">
@@ -500,7 +610,7 @@
                       <div class="chart-area epiBar">
                           <div class="epiChart" id="epiBarChart"></div>
                       </div>
-                      <div class="mb-3 epiBtn">
+                      <!-- <div class="mb-3 epiBtn">
                         <div class="d-flex">
                           <div class="form-group mb-2 me-2" style="margin-right: 1rem;">
                             <label for="startDateEPI" class="me-2">Start Date:</label>
@@ -516,7 +626,7 @@
                           <button id="sav_monthly_epi" class="chart-button mx-1">Monthly</button>
                           <button id="sav_yearly_epi" class="chart-button mx-1">Yearly</button>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
