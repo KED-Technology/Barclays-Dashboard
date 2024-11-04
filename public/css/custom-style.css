@@ -172,3 +172,17 @@ input[type="date"]:hover {
 .daterangepicker .yearselect:after {
   content: none; /* Hide the dropdown indicator */
 }
+/* Zoom effect on hover */
+.zoom-btn {
+  transition: transform 0.2s;
+}
+
+.zoom-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Disabled style for clicked button */
+.disabled-btn {
+  opacity: 0.6;
+  pointer-events: none;
+}

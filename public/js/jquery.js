@@ -216,8 +216,14 @@ jQuery(function () {
         // Destroy existing chart if it exists
         if (emissionChart) {
             if (emissionChart instanceof ApexCharts) {
-                console.log("Pie chart destroyed");
-                emissionChart.destroy(); // Dispose the existing chart
+                for (let i = 0; i < emissionChart.length; i++) {
+                    if (emissionChart[i] instanceof ApexCharts) {
+                        console.log("Pie chart destroyed");
+                        emissionChart[i].destroy();
+                    }
+                }
+                // console.log("Pie chart destroyed");
+                // emissionChart.destroy(); // Dispose the existing chart
             } else if (emissionChart instanceof AmCharts.AmChart) {
                 console.log("Pie chart destroyed");
                 emissionChart.clear(); // Clear the existing AmCharts instance
@@ -477,136 +483,136 @@ jQuery(function () {
         }
     }
 
-    async function showClusteredBarChart() {
-        // Dispose of existing chart
-        if (emissionChart) {
-            console.log("Bar chart destroyed");
-            if (emissionChart instanceof ApexCharts) {
-                emissionChart.destroy();
-            } else if (emissionChart instanceof AmCharts.AmChart) {
-                emissionChart.clear(); // Clear AmCharts instance
-            } else if (emissionChart instanceof am4charts.XYChart) {
-                emissionChart.dispose(); // Dispose am4charts instance
-            }
-        }
+    // async function showClusteredBarChart() {
+    //     // Dispose of existing chart
+    //     if (emissionChart) {
+    //         console.log("Bar chart destroyed");
+    //         if (emissionChart instanceof ApexCharts) {
+    //             emissionChart.destroy();
+    //         } else if (emissionChart instanceof AmCharts.AmChart) {
+    //             emissionChart.clear(); // Clear AmCharts instance
+    //         } else if (emissionChart instanceof am4charts.XYChart) {
+    //             emissionChart.dispose(); // Dispose am4charts instance
+    //         }
+    //     }
 
-        // Themes begin
+    //     // Themes begin
 
-        am4core.useTheme(am4themes_animated);
-        emissionChart = am4core.create('chartdiv', am4charts.XYChart);
+    //     am4core.useTheme(am4themes_animated);
+    //     emissionChart = am4core.create('chartdiv', am4charts.XYChart);
 
-        emissionChart.padding(0, 0, 0, 0);
-        emissionChart.colors.step = 2;
+    //     emissionChart.padding(0, 0, 0, 0);
+    //     emissionChart.colors.step = 2;
 
-        emissionChart.legend = new am4charts.Legend();
-        emissionChart.legend.position = 'bottom';
-        emissionChart.legend.paddingBottom = 20;
-        emissionChart.legend.labels.template.maxWidth = 95;
-        emissionChart.legend.labels.template.fill = am4core.color('#000000');
+    //     emissionChart.legend = new am4charts.Legend();
+    //     emissionChart.legend.position = 'bottom';
+    //     emissionChart.legend.paddingBottom = 20;
+    //     emissionChart.legend.labels.template.maxWidth = 95;
+    //     emissionChart.legend.labels.template.fill = am4core.color('#000000');
 
-        var xAxis = emissionChart.xAxes.push(new am4charts.CategoryAxis());
-        xAxis.dataFields.category = 'category';
+    //     var xAxis = emissionChart.xAxes.push(new am4charts.CategoryAxis());
+    //     xAxis.dataFields.category = 'category';
 
-        xAxis.renderer.cellStartLocation = 0.2;
-        xAxis.renderer.cellEndLocation = 0.8;
-        xAxis.renderer.grid.template.location = 0;
-        xAxis.renderer.labels.template.fill = am4core.color('#000000');
-        xAxis.renderer.minGridDistance = 20;
-        xAxis.renderer.labels.template.rotation = 270;
-        xAxis.renderer.labels.template.horizontalCenter = "right";
-        xAxis.renderer.labels.template.verticalCenter = "middle";
+    //     xAxis.renderer.cellStartLocation = 0.2;
+    //     xAxis.renderer.cellEndLocation = 0.8;
+    //     xAxis.renderer.grid.template.location = 0;
+    //     xAxis.renderer.labels.template.fill = am4core.color('#000000');
+    //     xAxis.renderer.minGridDistance = 20;
+    //     xAxis.renderer.labels.template.rotation = 270;
+    //     xAxis.renderer.labels.template.horizontalCenter = "right";
+    //     xAxis.renderer.labels.template.verticalCenter = "middle";
 
-        var yAxis = emissionChart.yAxes.push(new am4charts.ValueAxis());
-        yAxis.min = 0;
-        yAxis.renderer.labels.template.fill = am4core.color('#000000');
+    //     var yAxis = emissionChart.yAxes.push(new am4charts.ValueAxis());
+    //     yAxis.min = 0;
+    //     yAxis.renderer.labels.template.fill = am4core.color('#000000');
 
-        function createSeries(value, name, color) {
-            var series = emissionChart.series.push(new am4charts.ColumnSeries());
-            series.dataFields.valueY = value;
-            series.dataFields.categoryX = "category";
-            series.name = name;
+    //     function createSeries(value, name, color) {
+    //         var series = emissionChart.series.push(new am4charts.ColumnSeries());
+    //         series.dataFields.valueY = value;
+    //         series.dataFields.categoryX = "category";
+    //         series.name = name;
 
-            series.columns.template.fill = am4core.color(color);
-            series.columns.template.stroke = am4core.color(color);
-            series.tooltipText = '{name}: {valueY}';
-            series.tooltip.background.fill = am4core.color(color);  // Set background to bar color
-            series.tooltip.label.fill = am4core.color('#000000');    // Set text color to dark (black)
+    //         series.columns.template.fill = am4core.color(color);
+    //         series.columns.template.stroke = am4core.color(color);
+    //         series.tooltipText = '{name}: {valueY}';
+    //         series.tooltip.background.fill = am4core.color(color);  // Set background to bar color
+    //         series.tooltip.label.fill = am4core.color('#000000');    // Set text color to dark (black)
 
-            series.tooltip.pointerOrientation = 'vertical';
-            series.tooltip.getFillFromObject = false;
-            series.tooltip.getStrokeFromObject = false;
+    //         series.tooltip.pointerOrientation = 'vertical';
+    //         series.tooltip.getFillFromObject = false;
+    //         series.tooltip.getStrokeFromObject = false;
 
-            var bullet = series.bullets.push(new am4charts.LabelBullet());
-            bullet.interactionsEnabled = false;
-            bullet.dy = 30;
-            bullet.label.fill = am4core.color('#000000');
+    //         var bullet = series.bullets.push(new am4charts.LabelBullet());
+    //         bullet.interactionsEnabled = false;
+    //         bullet.dy = 30;
+    //         bullet.label.fill = am4core.color('#000000');
 
-            return series;
-        }
-
-
-        emissionChart.data = [
-            { category: 'Jan', first: 40, second: 55, third: 60 },
-            { category: 'Feb', first: 30, second: 78, third: 69 },
-            { category: 'Mar', first: 27, second: 40, third: 45 },
-            { category: 'Apr', first: 50, second: 33, third: 22 },
-            { category: 'May', first: 50, second: 33, third: 22 },
-            { category: 'Jun', first: 50, second: 33, third: 22 },
-            { category: 'Jul', first: 50, second: 33, third: 22 },
-            { category: 'Aug', first: 50, second: 33, third: 22 },
-            { category: 'Sep', first: 50, second: 33, third: 22 },
-            { category: 'Oct', first: 50, second: 33, third: 22 },
-            { category: 'Nov', first: 50, second: 33, third: 22 },
-            { category: 'Dec', first: 50, second: 33, third: 22 }
-        ];
-
-        createSeries('first', 'Scope 1', '#FFB22C');//["#FFB22C", "#A4CE95", "#FFD93D"],
-        createSeries('second', 'Scope 2', '#A4CE95');
-        createSeries('third', 'Scope 3', '#FFD93D');
-
-        function arrangeColumns() {
-            var series = emissionChart.series.getIndex(0);
-            var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
-            if (series.dataItems.length > 1) {
-                var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
-                var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
-                var delta = ((x1 - x0) / emissionChart.series.length) * w;
-                if (am4core.isNumber(delta)) {
-                    var middle = emissionChart.series.length / 2;
-                    var newIndex = 0;
-                    emissionChart.series.each(function (series) {
-                        if (!series.isHidden && !series.isHiding) {
-                            series.dummyData = newIndex;
-                            newIndex++;
-                        } else {
-                            series.dummyData = emissionChart.series.indexOf(series);
-                        }
-                    });
-                    var visibleCount = newIndex;
-                    var newMiddle = visibleCount / 2;
-                    emissionChart.series.each(function (series) {
-                        var trueIndex = emissionChart.series.indexOf(series);
-                        var newIndex = series.dummyData;
-                        var dx = (newIndex - trueIndex + middle - newMiddle) * delta;
-                        series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-                        series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
-                    });
-                }
-            }
-        }
-
-        var cursor = new am4charts.XYCursor();
-        emissionChart.cursor = cursor;
-
-        // Disable Y-axis line (if needed)
-        emissionChart.cursor.lineY.disabled = false;
-
-        // Disable the Y-axis tooltip box
-        yAxis.cursorTooltipEnabled = false;
-        emissionChart.logo.disabled = true;
+    //         return series;
+    //     }
 
 
-    }
+    //     emissionChart.data = [
+    //         { category: 'Week1', first: 40, second: 55, third: 60 },
+    //         { category: 'week2', first: 30, second: 78, third: 69 },
+    //         { category: 'week3', first: 27, second: 40, third: 45 },
+    //         // { category: 'Apr', first: 50, second: 33, third: 22 },
+    //         // { category: 'May', first: 50, second: 33, third: 22 },
+    //         // { category: 'Jun', first: 50, second: 33, third: 22 },
+    //         // { category: 'Jul', first: 50, second: 33, third: 22 },
+    //         // { category: 'Aug', first: 50, second: 33, third: 22 },
+    //         // { category: 'Sep', first: 50, second: 33, third: 22 },
+    //         // { category: 'Oct', first: 50, second: 33, third: 22 },
+    //         // { category: 'Nov', first: 50, second: 33, third: 22 },
+    //         // { category: 'Dec', first: 50, second: 33, third: 22 }
+    //     ];
+
+    //     createSeries('first', 'Scope 1', '#FFB22C');//["#FFB22C", "#A4CE95", "#FFD93D"],
+    //     createSeries('second', 'Scope 2', '#A4CE95');
+    //     createSeries('third', 'Scope 3', '#FFD93D');
+
+    //     function arrangeColumns() {
+    //         var series = emissionChart.series.getIndex(0);
+    //         var w = 1 - xAxis.renderer.cellStartLocation - (1 - xAxis.renderer.cellEndLocation);
+    //         if (series.dataItems.length > 1) {
+    //             var x0 = xAxis.getX(series.dataItems.getIndex(0), "categoryX");
+    //             var x1 = xAxis.getX(series.dataItems.getIndex(1), "categoryX");
+    //             var delta = ((x1 - x0) / emissionChart.series.length) * w;
+    //             if (am4core.isNumber(delta)) {
+    //                 var middle = emissionChart.series.length / 2;
+    //                 var newIndex = 0;
+    //                 emissionChart.series.each(function (series) {
+    //                     if (!series.isHidden && !series.isHiding) {
+    //                         series.dummyData = newIndex;
+    //                         newIndex++;
+    //                     } else {
+    //                         series.dummyData = emissionChart.series.indexOf(series);
+    //                     }
+    //                 });
+    //                 var visibleCount = newIndex;
+    //                 var newMiddle = visibleCount / 2;
+    //                 emissionChart.series.each(function (series) {
+    //                     var trueIndex = emissionChart.series.indexOf(series);
+    //                     var newIndex = series.dummyData;
+    //                     var dx = (newIndex - trueIndex + middle - newMiddle) * delta;
+    //                     series.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+    //                     series.bulletsContainer.animate({ property: "dx", to: dx }, series.interpolationDuration, series.interpolationEasing);
+    //                 });
+    //             }
+    //         }
+    //     }
+
+    //     var cursor = new am4charts.XYCursor();
+    //     emissionChart.cursor = cursor;
+
+    //     // Disable Y-axis line (if needed)
+    //     emissionChart.cursor.lineY.disabled = false;
+
+    //     // Disable the Y-axis tooltip box
+    //     yAxis.cursorTooltipEnabled = false;
+    //     emissionChart.logo.disabled = true;
+
+
+    // }
 
     async function createBarChart1() {
         if (emissionChart) {
@@ -691,17 +697,499 @@ jQuery(function () {
         emissionChart = new ApexCharts(document.querySelector("#chartdiv"), options);
         emissionChart.render();
     }
+    // async function emmisionHourly() {
+    //     am4core.ready(function() {
+
+    //         // Themes begin
+    //         am4core.useTheme(am4themes_animated);
+    //         // Themes end
+          
+    //         // Create chart instance
+    //         var emissionChart = am4core.create("chartdiv", am4charts.XYChart);
+    //         emissionChart.paddingLeft = 0;
+    //         emissionChart.scrollbarX = new am4core.Scrollbar();
+          
+    //         // Generate random data
+    //         var value = 100;
+          
+    //         function generateChartData() {
+    //           var chartData = [];
+    //           var firstDate = new Date();
+    //           firstDate.setDate(firstDate.getDate() - 1000);
+    //           firstDate.setHours(0, 0, 0, 0);
+          
+    //           for (var i = 0; i < 50; i++) {
+    //             var newDate = new Date(firstDate);
+    //             newDate.setSeconds(newDate.getSeconds() + i);
+          
+    //             value += (Math.random() < 0.5 ? 1 : -1) * Math.random() * 10;
+    //             chartData.push({
+    //               date: newDate,
+    //               value: value
+    //             });
+    //           }
+    //           return chartData;
+    //         }
+          
+    //         var data = generateChartData();
+    //         emissionChart.data = data;
+          
+    //         // Create axes
+    //         var dateAxis = emissionChart.xAxes.push(new am4charts.DateAxis());
+    //         dateAxis.baseInterval = { timeUnit: "second", count: 1 };
+    //         dateAxis.tooltipDateFormat = "HH:mm:ss";
+    //         dateAxis.extraMax = 0.1;
+    //         dateAxis.extraMin = -0.1;
+          
+    //         var valueAxis = emissionChart.yAxes.push(new am4charts.ValueAxis());
+          
+    //         // Create series
+    //         var series = emissionChart.series.push(new am4charts.LineSeries());
+    //         series.dataFields.valueY = "value";
+    //         series.dataFields.dateX = "date";
+    //         series.tooltipText = "{valueY}";
+    //         // Remove fill under the line by setting fillOpacity to 0
+    //         series.fillOpacity = 0;
+          
+    //         // Add a single bullet
+    //         var bullet = series.bullets.push(new am4charts.CircleBullet());
+    //         bullet.circle.radius = 5;
+    //         bullet.circle.fill = am4core.color("#ff0000");
+          
+    //         // Bullet animation
+    //         bullet.circle.events.on("inited", function(event) {
+    //           var animation = event.target.animate(
+    //             [{ property: "scale", from: 1, to: 1.5 }, { property: "opacity", from: 1, to: 0 }],
+    //             1000,
+    //             am4core.ease.circleOut
+    //           );
+    //           animation.events.on("animationended", function(event) {
+    //             event.target.stop();
+    //             event.target.play();
+    //           });
+    //         });
+          
+    //         // Add cursor
+    //         emissionChart.cursor = new am4charts.XYCursor();
+    //         emissionChart.cursor.xAxis = dateAxis;
+    //         emissionChart.cursor.snapToSeries = series;
+          
+    //         // Update data every second
+    //         setInterval(function() {
+    //           addData();
+    //         }, 1000);
+          
+    //         function addData() {
+    //           var lastDataItem = emissionChart.data[emissionChart.data.length - 1];
+    //           var newValue = value + ((Math.random() < 0.5 ? 1 : -1) * Math.random() * 5);
+    //           var newDate = new Date(lastDataItem.date);
+    //           newDate.setSeconds(newDate.getSeconds() + 1);
+    //           emissionChart.addData({ date: newDate, value: newValue }, 1);
+          
+    //           bullet.circle.animate(
+    //             [{ property: "scale", from: 1, to: 1.5 }, { property: "opacity", from: 1, to: 0 }],
+    //             1000,
+    //             am4core.ease.circleOut
+    //           );
+    //         }
+          
+    //         // Make the chart animate on load
+    //         emissionChart.events.on("inited", function() {
+    //           series.appear(1000);
+    //         });
+          
+    //       }); // end am4core.ready()
+            
+    // }
+   
+    
+    // Button click event with correct function call
+    async function emissionHourly() {
+        // Generate chart data for the previous month
+        var chartData1 = generateChartData();
+    
+        function generateChartData() {
+            var chartData = [];
+            var hours = ["12 AM", "2 AM", "4 AM", "6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM", "8 PM", "10 PM"];
+            
+            for (let i = 0; i < hours.length; i++) {
+                var visits = 1200 + Math.round(Math.random() * 10); // Only positive values
+                var hits = 1220 + Math.round(Math.random() * 10);   // Only positive values
+                var views = 1240 + Math.round(Math.random() * 10);  // Only positive values
+                
+                chartData.push({
+                    date: hours[i], // Label for X-axis without "Day" prefix
+                    scope1: visits,
+                    scope2: hits,
+                    scope3: views
+                });
+            }
+            return chartData;
+        }
+    
+        // Alert if no data exists
+        if (chartData1.length === 0) {
+            alert('No data to display for the selected range');
+            return;
+        }
+    
+        // Destroy existing chart if it exists
+        if (emissionChart) {
+            if (emissionChart instanceof ApexCharts) {
+                console.log("Chart destroyed");
+                emissionChart.destroy(); // Dispose the single ApexCharts instance
+            } else if (emissionChart instanceof AmCharts.AmChart) {
+                console.log("Chart destroyed");
+                emissionChart.clear(); // Clear the existing AmCharts instance
+            } else if (emissionChart instanceof am4charts.XYChart) {
+                console.log("Chart destroyed");
+                emissionChart.dispose(); // Dispose the existing am4charts instance
+            }
+        }
+    
+        // Create the line chart with the generated data for the previous month
+        emissionChart = AmCharts.makeChart("chartdiv", {
+            "type": "serial",
+            "theme": "light",
+            "color": "#000",
+            "legend": {
+                "useGraphSettings": true,
+                "color": "#000",
+                "position": "bottom",
+                "align": "center",
+                "marginBottom": 10,
+                "valueText": ""
+            },
+            "dataProvider": chartData1,
+            "synchronizeGrid": true,
+            "valueAxes": [{
+                "id": "v1",
+                "axisColor": "#000",
+                "axisThickness": 0.5,
+                "axisAlpha": 1,
+                "position": "left"
+            }],
+            "graphs": [{
+                "valueAxis": "v1",
+                "lineColor": "#FFB22C",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "Scope 1",
+                "valueField": "scope1",
+                "fillAlphas": 0,
+                "type": "smoothedLine",
+                "balloonText": "<span style='font-size:13px;'>[[value]]</span>",
+                "balloon": {
+                    "adjustBorderColor": false,
+                    "color": "#000",
+                    "fillColor": "#FFB22C",
+                    "borderColor": "#FFB22C"
+                }
+            }, {
+                "valueAxis": "v1",
+                "lineColor": "#A4CE95",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "Scope 2",
+                "valueField": "scope2",
+                "fillAlphas": 0,
+                "type": "smoothedLine",
+                "balloonText": "<span style='font-size:13px;'>[[value]]</span>",
+                "balloon": {
+                    "adjustBorderColor": false,
+                    "color": "#000",
+                    "fillColor": "#A4CE95",
+                    "borderColor": "#A4CE95"
+                }
+            }, {
+                "valueAxis": "v1",
+                "lineColor": "#FFD93D",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "Scope 3",
+                "valueField": "scope3",
+                "fillAlphas": 0,
+                "type": "smoothedLine",
+                "balloonText": "<span style='font-size:13px;'>[[value]]</span>",
+                "balloon": {
+                    "adjustBorderColor": false,
+                    "color": "#000",
+                    "fillColor": "#FFD93D",
+                    "borderColor": "#FFD93D"
+                }
+            }],
+            "chartScrollbar": {
+                "offset": 20
+            },
+            "chartCursor": {
+                "cursorPosition": "mouse",
+                "cursorColor": "#000000"
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "parseDates": false, // Set to false since we are using custom labels
+                "axisColor": "#000",
+                "minorGridEnabled": true
+            },
+            "export": {
+                "enabled": true
+            }
+        });
+    
+        emissionChart.addListener("dataUpdated", zoomChart);
+        zoomChart();
+    
+        function zoomChart() {
+            emissionChart.zoomToIndexes(emissionChart.dataProvider.length - hours.length, emissionChart.dataProvider.length - 1);
+        }
+    }
+    async function showPreviousMonthsBarChart() {
+        // Dispose of existing chart if it exists
+        if (emissionChart) {
+            console.log("Previous months chart destroyed");
+            if (emissionChart instanceof ApexCharts) {
+                emissionChart.destroy();
+            } else if (emissionChart instanceof AmCharts.AmChart) {
+                emissionChart.clear();
+            } else if (emissionChart instanceof am4charts.XYChart) {
+                emissionChart.dispose();
+            }
+        }
+    
+        // Get last three months dynamically based on the current month
+        const getLastThreeMonths = () => {
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const now = new Date();
+            const currentMonth = now.getMonth();
+    
+            const lastThreeMonths = [
+                months[(currentMonth - 3 + 12) % 12],
+                months[(currentMonth - 2 + 12) % 12],
+                months[currentMonth-1]
+            ];
+    
+            return lastThreeMonths;
+        };
+    
+        const [month1, month2, month3] = getLastThreeMonths();
+    
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        emissionChart = am4core.create('chartdiv', am4charts.XYChart);
+    
+        emissionChart.padding(0, 0, 0, 0);
+        emissionChart.colors.step = 2;
+    
+        emissionChart.legend = new am4charts.Legend();
+        emissionChart.legend.position = 'bottom';
+        emissionChart.legend.paddingBottom = 20;
+        emissionChart.legend.labels.template.maxWidth = 95;
+        emissionChart.legend.labels.template.fill = am4core.color('#000000');
+    
+        var xAxis = emissionChart.xAxes.push(new am4charts.CategoryAxis());
+        xAxis.dataFields.category = 'month';
+    
+        xAxis.renderer.cellStartLocation = 0.2;
+        xAxis.renderer.cellEndLocation = 0.8;
+        xAxis.renderer.grid.template.location = 0;
+        xAxis.renderer.labels.template.fill = am4core.color('#000000');
+        xAxis.renderer.minGridDistance = 20;
+        xAxis.renderer.labels.template.rotation = 0;
+        xAxis.renderer.labels.template.horizontalCenter = "middle";
+        xAxis.renderer.labels.template.verticalCenter = "middle";
+    
+        var yAxis = emissionChart.yAxes.push(new am4charts.ValueAxis());
+        yAxis.min = 0;
+        yAxis.renderer.labels.template.fill = am4core.color('#000000');
+    
+        function createSeries(value, name, color) {
+            var series = emissionChart.series.push(new am4charts.ColumnSeries());
+            series.dataFields.valueY = value;
+            series.dataFields.categoryX = "month";
+            series.name = name;
+    
+            series.columns.template.fill = am4core.color(color);
+            series.columns.template.stroke = am4core.color(color);
+            series.tooltipText = '{name}: {valueY}';
+            series.tooltip.background.fill = am4core.color(color);
+            series.tooltip.label.fill = am4core.color('#000000');
+    
+            series.tooltip.pointerOrientation = 'vertical';
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.getStrokeFromObject = false;
+    
+            var bullet = series.bullets.push(new am4charts.LabelBullet());
+            bullet.interactionsEnabled = false;
+            bullet.dy = 30;
+            bullet.label.fill = am4core.color('#000000');
+    
+            return series;
+        }
+    
+        // Data for last three months
+        emissionChart.data = [
+            { month: month1, first: 55, second: 48, third: 63 },  // Adjust these values as needed
+            { month: month2, first: 40, second: 50, third: 45 },
+            { month: month3, first: 65, second: 70, third: 58 }
+        ];
+    
+        createSeries('first', 'Scope 1', '#FFB22C');
+        createSeries('second', 'Scope 2', '#A4CE95');
+        createSeries('third', 'Scope 3', '#FFD93D');
+    
+        // Cursor
+        var cursor = new am4charts.XYCursor();
+        emissionChart.cursor = cursor;
+    
+        // Disable Y-axis line (if needed)
+        emissionChart.cursor.lineY.disabled = false;
+    
+        // Disable the Y-axis tooltip box
+        yAxis.cursorTooltipEnabled = false;
+        emissionChart.logo.disabled = true;
+    }
+    async function showPreviousMonthsBarChart1() {
+        // Dispose of existing chart if it exists
+        if (emissionChart) {
+            console.log("Previous months chart destroyed");
+            if (emissionChart instanceof ApexCharts) {
+                emissionChart.destroy();
+            } else if (emissionChart instanceof AmCharts.AmChart) {
+                emissionChart.clear();
+            } else if (emissionChart instanceof am4charts.XYChart) {
+                emissionChart.dispose();
+            }
+        }
+    
+        // Get last three months dynamically based on the current month
+        const getLastThreeMonths = () => {
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            console.log(currentMonth+"current month");
+            const lastSixMonths = [
+                months[(currentMonth - 6 + 12) % 12],
+                months[(currentMonth - 5 + 12) % 12],
+                months[(currentMonth - 4 + 12) % 12],
+                months[(currentMonth - 3 + 12) % 12],
+                months[(currentMonth - 2 + 12) % 12],
+                months[currentMonth-1]
+            ];
+            console.log("months"+lastSixMonths);
+            return lastSixMonths;
+        };
+    
+        const [month1, month2, month3,month4,month5,month6] = getLastThreeMonths();
+    
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        emissionChart = am4core.create('chartdiv', am4charts.XYChart);
+    
+        emissionChart.padding(0, 0, 0, 0);
+        emissionChart.colors.step = 2;
+    
+        emissionChart.legend = new am4charts.Legend();
+        emissionChart.legend.position = 'bottom';
+        emissionChart.legend.paddingBottom = 20;
+        emissionChart.legend.labels.template.maxWidth = 95;
+        emissionChart.legend.labels.template.fill = am4core.color('#000000');
+    
+        var xAxis = emissionChart.xAxes.push(new am4charts.CategoryAxis());
+        xAxis.dataFields.category = 'month';
+    
+        xAxis.renderer.cellStartLocation = 0.2;
+        xAxis.renderer.cellEndLocation = 0.8;
+        xAxis.renderer.grid.template.location = 0;
+        xAxis.renderer.labels.template.fill = am4core.color('#000000');
+        xAxis.renderer.minGridDistance = 20;
+        xAxis.renderer.labels.template.rotation = 0;
+        xAxis.renderer.labels.template.horizontalCenter = "middle";
+        xAxis.renderer.labels.template.verticalCenter = "middle";
+    
+        var yAxis = emissionChart.yAxes.push(new am4charts.ValueAxis());
+        yAxis.min = 0;
+        yAxis.renderer.labels.template.fill = am4core.color('#000000');
+    
+        function createSeries(value, name, color) {
+            var series = emissionChart.series.push(new am4charts.ColumnSeries());
+            series.dataFields.valueY = value;
+            series.dataFields.categoryX = "month";
+            series.name = name;
+    
+            series.columns.template.fill = am4core.color(color);
+            series.columns.template.stroke = am4core.color(color);
+            series.tooltipText = '{name}: {valueY}';
+            series.tooltip.background.fill = am4core.color(color);
+            series.tooltip.label.fill = am4core.color('#000000');
+    
+            series.tooltip.pointerOrientation = 'vertical';
+            series.tooltip.getFillFromObject = false;
+            series.tooltip.getStrokeFromObject = false;
+    
+            var bullet = series.bullets.push(new am4charts.LabelBullet());
+            bullet.interactionsEnabled = false;
+            bullet.dy = 30;
+            bullet.label.fill = am4core.color('#000000');
+    
+            return series;
+        }
+    
+        // Data for last three months
+        emissionChart.data = [
+            { month: month1, first: 55, second: 48, third: 63 },  // Adjust these values as needed
+            { month: month2, first: 40, second: 50, third: 45 },
+            { month: month3, first: 65, second: 70, third: 58 },
+            { month: month4, first: 55, second: 48, third: 63 },  // Adjust these values as needed
+            { month: month5, first: 40, second: 50, third: 45 },
+            { month: month6, first: 65, second: 70, third: 58 }
+        ];
+    
+        createSeries('first', 'Scope 1', '#FFB22C');
+        createSeries('second', 'Scope 2', '#A4CE95');
+        createSeries('third', 'Scope 3', '#FFD93D');
+    
+        // Cursor
+        var cursor = new am4charts.XYCursor();
+        emissionChart.cursor = cursor;
+    
+        // Disable Y-axis line (if needed)
+        emissionChart.cursor.lineY.disabled = false;
+    
+        // Disable the Y-axis tooltip box
+        yAxis.cursorTooltipEnabled = false;
+        emissionChart.logo.disabled = true;
+    }
+    
+    $("#sav_hourly_btn").on("click", async function () {
+        clearDateInputs();
+        console.log("hourly clicked");
+        await emissionHourly(); // Note the parentheses to call the function
+    });
+    
 
     $("#startDate, #endDate").on("change", async function () {
         clearDateInputsWater();
         await lineChart2();
     });
 
+    // $("#sav_hourly_btn").on("click", async function () {
+    //     clearDateInputs();
+    //     console.log("hourly clicked");
+    //     await emissionHourly;
+    // });
     $("#sav_monthly_btn").on("click", async function () {
         clearDateInputs();
         await lineChartMonthlyCo25();
     });
 
+    $("#sav_last3_btn").on("click", async function () {
+        clearDateInputs();
+        await showPreviousMonthsBarChart();
+    });
+    $("#sav_last6_btn").on("click", async function () {
+        clearDateInputs();
+        await showPreviousMonthsBarChart1();
+    });
     $("#sav_daily_btn").on("click", async function () {
         clearDateInputs();
         await pieChart();
@@ -4388,17 +4876,93 @@ $('.daily').on("click", async function () {
     $(".5Y").hide();
     $(".Yearly").hide();
 });
-
-  // Initialize Date Range Picker with month and year dropdowns
-  $('#customRangeOption').daterangepicker({
+$('.weekly').on("click", async function () {
+    console.log("weekly clicked");
+    $(".Hourly").hide();
+    $(".Daily").show();
+    $(".Weekly").show();
+    $(".3Mo").hide();
+    $(".6Mo").hide();
+    $(".Monthly").hide();
+    $(".3Y").hide();
+    $(".5Y").hide();
+    $(".Yearly").hide();
+});
+$('.monthly').on("click", async function () {
+    console.log("monthly clicked");
+    $(".Hourly").hide();
+    $(".Daily").hide();
+    $(".Weekly").show();
+    $(".3Mo").show();
+    $(".6Mo").show();
+    $(".Monthly").show();
+    $(".3Y").hide();
+    $(".5Y").hide();
+    $(".Yearly").hide();
+});
+$('.yearly').on("click", async function () {
+    console.log("daily clicked");
+    $(".Hourly").hide();
+    $(".Daily").hide();
+    $(".Weekly").hide();
+    $(".3Mo").hide();
+    $(".6Mo").hide();
+    $(".Monthly").hide();
+    $(".3Y").show();
+    $(".5Y").show();
+    $(".Yearly").show();
+});
+$('#customRangeOption').daterangepicker({
     opens: 'right',
     autoUpdateInput: false,
-    showDropdowns: true, // Enables month and year dropdowns
+    showDropdowns: true,
+    alwaysShowCalendars: true,
     locale: {
-        format: 'YYYY-MM-DD', // Display format
+        format: 'YYYY-MM-DD',
         cancelLabel: 'Clear'
     }
 }, function (start, end) {
-    // Display selected range in the button text if valid
+    // Display selected range in the button text
     $('#selectedOptionDisplay').text(`${start.format('YYYY-MM-DD')} - ${end.format('YYYY-MM-DD')}`);
+    
+    // Calculate the difference in days between start and end dates
+    const daysDiff = end.diff(start, 'days');
+
+    // Show/Hide elements based on date range length
+    if (daysDiff <= 1) {
+        // Daily range
+        $(".Hourly, .Daily").show();
+        $(".Weekly, .Monthly, .3Mo, .6Mo, .Yearly, .3Y, .5Y").hide();
+    } else if (daysDiff <= 7) {
+        // Weekly range
+        $(".Weekly, .Daily").show();
+        $(".Hourly, .Monthly, .3Mo, .6Mo, .Yearly, .3Y, .5Y").hide();
+    } else if (daysDiff <= 31 && daysDiff >7) {
+        // Monthly range
+        $(".Monthly, .Weekly").show();
+        $(".Hourly, .Daily, .Yearly, .3Y, .5Y, .3Mo, .6Mo").hide();
+    } else if (daysDiff <= 365 && daysDiff >31) {
+        // Yearly range
+        $(".Monthly, .3Mo, .6Mo").show();
+        $(".Hourly, .Daily, .Weekly, .Yearly, .3Y, .5Y").hide();
+    } else {
+        // Multi-year range (for example)
+        $(".3Y, .5Y, .Yearly").show();
+        $(".Hourly, .Daily, .Weekly, .Monthly, .3Mo, .6Mo").hide();
+    }
 });
+
+
+  // Initialize Date Range Picker with month and year dropdowns
+//   $('#customRangeOption').daterangepicker({
+//     opens: 'right',
+//     autoUpdateInput: false,
+//     showDropdowns: true, // Enables month and year dropdowns
+//     locale: {
+//         format: 'YYYY-MM-DD', // Display format
+//         cancelLabel: 'Clear'
+//     }
+// }, function (start, end) {
+//     // Display selected range in the button text if valid
+//     $('#selectedOptionDisplay').text(`${start.format('YYYY-MM-DD')} - ${end.format('YYYY-MM-DD')}`);
+// });
