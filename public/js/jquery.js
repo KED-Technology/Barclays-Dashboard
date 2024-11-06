@@ -4892,12 +4892,14 @@ $('.monthly').on("click", async function () {
     console.log("monthly clicked");
     $(".Hourly").hide();
     $(".Daily").hide();
-    $(".Weekly").show();
+    $(".Weekly").hide();
     $(".3Mo").show();
     $(".6Mo").show();
     $(".Monthly").show();
     $(".3Y").hide();
     $(".5Y").hide();
+    $(".YTD").hide();
+    $(".MTD").show();
     $(".Yearly").hide();
 });
 $('.yearly').on("click", async function () {
@@ -4910,6 +4912,8 @@ $('.yearly').on("click", async function () {
     $(".Monthly").hide();
     $(".3Y").show();
     $(".5Y").show();
+    $(".MTD").hide();
+    $(".YTD").show();
     $(".Yearly").show();
 });
 $('#customRangeOption').daterangepicker({
